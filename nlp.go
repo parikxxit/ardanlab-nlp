@@ -3,6 +3,8 @@ package nlp
 import (
 	"regexp"
 	"strings"
+
+	"github.com/parikxxit/ardanlab-nlp/stemmer"
 )
 
 var (
@@ -15,6 +17,7 @@ func Tokenize(text string) []string {
 	var tokens []string
 	for _, w := range words {
 		token := strings.ToLower(w)
+		token = stemmer.Stem(token)
 		if len(token) != 0 {
 			tokens = append(tokens, token)
 		}
